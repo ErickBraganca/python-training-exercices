@@ -29,7 +29,7 @@ $ git clone -n https://github.com/ErickBraganca/python-training-exercises.git
 
 ### Access the directory.
 ```sh
-cd javascript-training-exercises
+cd python-training-exercises
 ```
 
 ### Clone the specific directory.
