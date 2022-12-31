@@ -4,7 +4,7 @@ These exercicies are separated into three categories:
 
  - 🥇 Basic Level,
  - 🥈 Intermediate Level
- - 🏅 Advanced level
+ - 🥉 Advanced level
 
 ## 💻 Technologies
 <div style="display: inline_block">
