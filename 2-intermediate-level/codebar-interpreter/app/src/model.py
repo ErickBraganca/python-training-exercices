@@ -1,38 +1,61 @@
-# Define a class of structured barcode functions.
 class barcode_rules():
-    # Return the region based in the range code
-    def get_region(region):
-        if (1 >= region <= 99):
-            return "Sudeste"
-        elif (100 >= region <= 199):
-            return "Sul"
-        elif (201 >= region <= 299):
-            return "Centro-Oeste"
-        elif (300 >= region <= 399):
-            return "Nordeste"
-        elif (400 >= region <= 499):
-            return "Nordeste"
-        else:
-            return {'error': 101}
-    # -----------------------------------------#
-    # Vendor Getter
 
+    # Region Getter
+    def get_region(region):
+        print("-----Start Region Check-----")
+        region_store = {
+            'Sudeste':      {'min': 1,   'max':  99},
+            'Sul':          {'min': 100, 'max': 200},
+            'Centro-Oeste': {'min': 200, 'max': 299},
+            'Nordeste':     {'min': 300, 'max': 399},
+            'Norte':        {'min': 400, 'max': 499},
+        }
+
+        checked_region = {}
+
+        for index in region_store:
+            instance = region_store[index]
+            inf = instance['min']  # Inferior Limit
+            sup = instance['max']  # Superior Limit
+
+            if (int(region) in range(inf, sup)):
+                checked_region['code'] = region
+                checked_region['key'] = index
+            # ---------------------------------------#
+        if ((len(checked_region)) != 0):
+            return checked_region
+        else:
+            checked_region['code'] = region
+            checked_region['key'] = 'None'
+
+            return checked_region
+    # -----------------------------------------#
+
+    # Vendor Getter
     def get_vendor(vendor):
         vendor_store = {
-            '001': 'Joias',
-            '111': 'Livros',
-            '333': 'Eletrônicos',
-            '555': 'Bebidas',
-            '888': 'Brinquedos',
+            '001': 'Lojas A',
+            '102': 'Lojas B',
+            '103': 'Lojas C',
+            '104': 'Lojas D',
+            '105': 'Lojas E',
             'ERR': 'Not Registered'
         }
-        try:
-            return vendor_store[vendor]
-        except KeyError:
-            return vendor_store['ERR']
-    # -------------------------------------------#
-    # Product Type Getter
 
+        checked_vendor = {}
+
+        try:
+            checked_vendor['code'] = vendor
+            checked_vendor['key'] = vendor_store[vendor]
+            return checked_vendor
+
+        except KeyError:
+            checked_vendor['code'] = vendor
+            checked_vendor['key'] = vendor_store['ERR']
+            return checked_vendor
+    # -------------------------------------------#
+
+    # Product Type Getter
     def get_product(product):
         product_store = {
             '001': 'Joias',
@@ -42,7 +65,15 @@ class barcode_rules():
             '888': 'Brinquedos',
             'ERR': 'Not Registered'
         }
+
+        checked_product = {}
+
         try:
-            return product_store[product]
+            checked_product['code'] = product
+            checked_product['key'] = product_store[product]
+            return  checked_product
+
         except KeyError:
-            return product_store['ERR']
+            checked_product['code'] = product
+            checked_product['key'] = product_store['ERR']
+            return  checked_product
