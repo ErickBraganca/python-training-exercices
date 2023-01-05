@@ -1,50 +1,63 @@
 # Importing modules
 import model
+rule_model = model.barcode_model
 
-rule_model = model.barcode_rules
-inputed_code = "001334555001001"
+# Input and output variables
+inputed_codes = ['001345550001001', '246145550001001']
+invalid_codes = []
+pack_list = []
 
-# Cheking if the inputed code is válid
-def barcode_validator(raw_code):
-    chart_lenght = len(raw_code)
-    if chart_lenght != 15:
-        print("Código Inválido")
-    else:
-        print("-----Code Validated-----")
-        barcode_slicer(raw_code)
-#----------------------------------------#
+# Interpreter inicializator
+def init_interpreter(raw_codes):
+    print("#-----Start Interpreter-----#")
 
-# Slicing the barcode in specific sequence.
-def barcode_slicer(validated_code):
-    print("-----Start Code Split-----")
+    # Code validation to check right code nature
+    def code_validator(raw_codes):
+        print('#-----Start Code Validator-----#')
+        for raw_code in raw_codes:
+            valid_enumeration = raw_code.isdecimal()
+            valid_quantity = len(raw_code)
 
-    # Dummy code splited
-    splited_code = {
-        "origem": "",
-        "destino": "",
-        "identificador": "",
-        "vendedor": "",
-        "produto": "",
-    }
+            if (valid_quantity == 15 and valid_enumeration):
+                print('Code Validated')
+                code_slicer(raw_code)
+            else:
+                invalid_codes.append(raw_code)
+                print('Code Invalid')
+    # ----------------------------------------#    
+    # Code splitation in specific sentence
+    def code_slicer(valid_code):
+        print('#-----Start Code slicer-----#')
+    
+        # Dummy Code Splited
+        splited_code = {
+            "origem":       valid_code[0:3],
+            "destino":      valid_code[3:6],
+            "identificador":valid_code[6:9],
+            "vendedor":     valid_code[9:12],
+            "produto":      valid_code[12:16],
+        }
+        packge_composer(splited_code)
 
-    # Defining split parameters
-    i = 0  # Start Increment
-    s = 3  # End Increment
+    # Call the nterpoint in interpreter inicializator
+    code_validator(raw_codes)
+    print("#-----End Interpreter-----#")
 
-    # Iterating by code
-    for prop in splited_code:
-        splited_code[prop] = validated_code[i : i + s]
-        i += 3
-    #-------------------------------------#
-    packge_composer(splited_code)
-    print("-----End Code Split-----")
-#----------------------------------------#
+    return pack_list
+# ----------------------------------------#
 
-#Packge composer
+# Packge composer
 def packge_composer(splited_code):
-    print("-----Start Pack Configuration-----")
-    pack_list = []
-    pack_object = {**splited_code}
+    print("#-----Start Pack Configurator-----#")
+
+    # Dummy of package object
+    pack_object = {
+        'origem':       '',
+        'destino':      '',
+        'identificador':'',
+        'vendedor':     '',
+        'produto':      '',
+    }
 
     pack_object['origem'] = rule_model.get_region(splited_code['origem'])
     pack_object['destino'] = rule_model.get_region(splited_code['destino'])
@@ -53,8 +66,6 @@ def packge_composer(splited_code):
     pack_object['identificador'] = pack_object['identificador']
 
     pack_list.append(pack_object)
-#----------------------------------------#
-barcode_validator(inputed_code)
+# ----------------------------------------#
 
-
-
+print(init_interpreter(inputed_codes))
