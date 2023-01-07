@@ -39,7 +39,7 @@ def init_interpreter(raw_codes):
         }
         packge_composer(splited_code)
 
-    # Call the nterpoint in interpreter inicializator
+    # Call the enterpoint in interpreter inicializator
     code_validator(raw_codes)
     print("#-----End Interpreter-----#")
 
