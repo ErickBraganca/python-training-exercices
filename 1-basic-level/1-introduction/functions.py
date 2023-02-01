@@ -99,3 +99,44 @@ wallet()
     3 - Retorne um novo array com as notas mínimas necessárias para que a média
     entre esse novos valores e o array de notas abaixo de 70 alcansem o esperado para passar.
 '''
+
+from functools import reduce
+tests_results = [100,70,65,85,89,95,99,30,20,10,35,67,55,59,54,78,84,97,60,50,49,25,80,75,96,100,74,80,60,78]
+minimum_grade = 70
+
+#Helper Functions
+def lower_range(item):
+    return item < minimum_grade
+
+def uper_range(item):
+    return item > minimum_grade
+
+def average_reducer(value, acumulator):
+    return value + acumulator
+
+def grade_compensation(lower_list):
+    def map_function(item):
+        return (minimum_grade * 2 ) - item
+
+    minimal_point = list(map(map_function, lower_list))
+    return minimal_point
+
+
+#Main Function
+def summarize_test():
+    average_grade = (reduce(average_reducer, tests_results))/len(tests_results)
+    print(f'[---Média da Turma: {average_grade}---]')
+
+    uper_sample = list(filter(uper_range, tests_results))
+    print(f'[---Alunos Acima da Mínima: {len(uper_sample)}---]')
+    print(uper_sample)  
+
+    lower_sample = list(filter(lower_range, tests_results))
+    print(f'[---Alunos Abaixo da Mínima: {len(lower_sample)}---]')
+    print(lower_sample)
+
+    compensation_list = grade_compensation(lower_sample)
+    print('[---Nota Mínima:---]')
+    print(compensation_list)
+
+summarize_test()
