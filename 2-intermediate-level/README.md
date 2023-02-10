@@ -4,4 +4,5 @@
 ## 🥈 Index of Exercices
 <ol>
     <li>CODEBAR Interpreter</li>
+    <li>HTTP Server NoFramework</li>
 </ol>
