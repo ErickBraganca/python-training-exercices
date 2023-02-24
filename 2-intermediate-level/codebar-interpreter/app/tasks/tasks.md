@@ -3,7 +3,5 @@
 - [x] Store properly the standard barcode structure.
 - [x] Store properly the inputed barcode.
 - [x] Check if the inputed barcode is it valid.
-- [x] Divide the barcode into numerical sequences of three and store it properly.
-- [ ] Check if the code is included in any restriction
-- [ ] Develop apresentarion layer
-- [ ] Develop restrictios validation
+- [x] Divide the barcode into numerical sequences and store it properly.
+- [x] Return the consolidated information about the package.
