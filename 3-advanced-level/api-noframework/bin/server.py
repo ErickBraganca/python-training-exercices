@@ -36,12 +36,9 @@ class ServerInstance(BaseHTTPRequestHandler):
       response_content = bytes(str(output_content), 'utf-8')
       self.handler_Response(response_content, output_status, output_type)
     else:
-      response_content = bytes(str(output_data), 'utf-8')
-      self.handler_Response(response_content, output_status, output_type)
-
-    #output_json = json.dumps(output_data)
-    #output_content = output_json.encode('utf-8')
-
+      output_json = dumps(output_data)
+      output_content = output_json.encode('utf-8')
+      self.handler_Response(output_content, output_status, output_type)
   def handler_Response(self, content, code, type):
     self.set_HEAD(code, type)
     self.wfile.write(content)

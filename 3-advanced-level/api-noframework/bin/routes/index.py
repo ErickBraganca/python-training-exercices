@@ -15,6 +15,7 @@ def getRequest(path):
     #Instance of error object for the exception request
     '404':{
     'content': {'result': 'Route not Found!'},
+    'template': False,
     'type': 'application/json',
     'status': 404}
   }
