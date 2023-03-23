@@ -1,25 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: darkslategray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            font-size: 1rem;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .action-container {
+            display: flex;
+            flex-direction: column;
+            border: solid 2px rosybrown;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group {
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rebeccapurple;
+            background-color: white;
+            outline: none;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        input:focus {
+            background-color: darkgray;
+            color: white;
+        }
+
+        .button-container {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            width: 100px;
+            font-weight: 400;
+            border-radius: 5px;
+            font-size: 1.25rem;
+            height: 35px;
+            border: 1px solid;
+        }
+
+        .add {
+            background-color: greenyellow;
+        }
+
+        .send {
+            background-color: darkslateblue;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: rgb(150, 150, 150);
+        }
+    </style>
 </head>
+
 <body>
-    <form action="http://localhost:8000/", method="post">
-        <section class="field-group">
-            <label for="txt_user">User Name</label>
-            <input type="text" id="txt_user" class="input_class">
+    <main class="action-container">
+        <section class="input-group">
+            <div class="form-container">
+                <div class="input-group">
+                    <label for="code">Código</label>
+                    <input class="input-code" id="code" type="text">
+                </div>
+                <div class="button-container">
+                    <button class="button add" id="add">Adicionar</button>
+                    <button class="button send" id="send">Enviar</button>
+                </div>
+            </div>
+            <div class="data-group">
+
+            </div>
         </section>
-        <section class="field-group">
-            <label for="text_pass">Senha</label>
-            <input type="password" id="txt_password" class="input_class">
-        </section>
-        <section class="button_group">
-            <button type="submit">Enviar</button>
-            <button type="reset">Resetar</button>
-        </section>
-    </form>
+    </main>
+    <script>
+        const inputCode = document.getElementById("code")
+        const btnAdd = document.getElementById("add")
+        const btnSend = document.getElementById("send")
+
+        const dataDummy = []
+
+        const baseURL = 'http://localhost:8000/content'
+        const baseRequest = {
+            method: 'GET',
+            headers: {},
+            mode: 'cors',
+            cache: 'default'
+        }
+        btnSend.addEventListener("click", function () {
+            fetch(baseURL, baseRequest)
+            .then((resp)=> resp.json())
+            .then(function(data){
+                console.log(data)
+            }).catch(function(error){
+                console.log(error)
+            })
+        })
+    </script>
 </body>
 </html>

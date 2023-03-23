@@ -7,7 +7,7 @@ def getRequest(path):
     'status': 200},
 
     '/content':{
-    'content': {'result': 'Request Received!'},
+    'content': '{result: "Request Received!"}',
     'template': False,
     'type': 'application/json',
     'status': 200},
@@ -26,4 +26,3 @@ def getRequest(path):
 router = {
   'get': getRequest
 }
-
