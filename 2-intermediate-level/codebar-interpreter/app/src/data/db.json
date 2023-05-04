@@ -1,0 +1,22 @@
+{
+    "origin":{
+        "code":"288",
+        "key":"Centro-Oeste"
+    },
+    "destination":{
+        "code":"355",
+        "key":"Nordeste"
+    },
+    "vendor":{
+        "code":"123",
+        "key":"Lojas A"
+    },
+    "product":{
+        "code":"888",
+        "key":"Brinquedos"
+    },
+    "company":{
+        "code":"555",
+        "key":"Company Code"
+    }
+}
