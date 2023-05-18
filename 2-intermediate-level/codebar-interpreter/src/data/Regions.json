@@ -1,0 +1,7 @@
+{
+    "Sudeste":      {"min": 1, "max": 99},
+    "Sul":          {"min": 100, "max": 200},
+    "Centro-Oeste": {"min": 200, "max": 299},
+    "Nordeste":     {"min": 300, "max": 399},
+    "Norte":        {"min": 400, "max": 499}
+}

@@ -1,0 +1,24 @@
+[
+    {
+        "origin": {
+            "code": "034",
+            "key": "Sudeste"
+        },
+        "destination": {
+            "code": "311",
+            "key": "Nordeste"
+        },
+        "vendor": {
+            "code": "874",
+            "key": "Lojas D"
+        },
+        "product": {
+            "code": "001",
+            "key": "Joias"
+        },
+        "company": {
+            "code": "555",
+            "key": "Company Code"
+        }
+    }
+]

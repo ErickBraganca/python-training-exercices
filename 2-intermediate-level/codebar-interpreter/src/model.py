@@ -1,25 +1,21 @@
+from store import Controler
+
 class Package:
     # Constructor Method
     def __init__(self, origin, destination, company, vendor, product):
         # Computed Parameters
-        self.origin = self.set_region(origin)
-        self.destination = self.set_region(destination)
-        self.company = self.set_company(company)
-        self.vendor = self.set_vendor(vendor)
-        self.product = self.set_product(product)
+        self.origin =       self.set_region(origin)
+        self.destination =  self.set_region(destination)
+        self.company =      self.set_company(company)
+        self.vendor =       self.set_vendor(vendor)
+        self.product =      self.set_product(product)
     # ----------------------------------------#
-    # Region Getter
+    # Region Setter
     def set_region(self, origin_code):
-        region_store = {
-            "Sudeste":      {"min": 1, "max": 99},
-            "Sul":          {"min": 100, "max": 200},
-            "Centro-Oeste": {"min": 200, "max": 299},
-            "Nordeste":     {"min": 300, "max": 399},
-            "Norte":        {"min": 400, "max": 499},
-        }
+        regions_store = Controler.get_data("Regions")
         checked_region = {}
-        for index in region_store:
-            instance = region_store[index]
+        for index in regions_store:
+            instance = regions_store[index]
             inf = instance["min"]  # Inferior Limit
             sup = instance["max"]  # Superior Limit
 
@@ -35,47 +31,32 @@ class Package:
 
             return checked_region
     # -----------------------------------------#
-    # Vendor Getter
+    # Vendor Setter
     def set_vendor(self, vendor_code):
-        vendor_store = {
-            "123": "Lojas A",
-            "584": "Lojas B",
-            "124": "Lojas C",
-            "874": "Lojas D",
-            "654": "Lojas E",
-            "367": "Lojas F",
-            "ERR": "Not Registered",
-        }
+        vendors_store = Controler.get_data("Vendors")
         checked_vendor = {}
         try:
             checked_vendor["code"] = vendor_code
-            checked_vendor["key"] = vendor_store[vendor_code]
+            checked_vendor["key"] = vendors_store[vendor_code]
             return checked_vendor
 
         except KeyError:
             checked_vendor["code"] = vendor_code
-            checked_vendor["key"] = vendor_store["ERR"]
+            checked_vendor["key"] = vendors_store["ERR"]
             return checked_vendor
     # -------------------------------------------#
-    # Product Getter
+    # Product Setter
     def set_product(self, product_code):
-        product_store = {
-            "001": "Joias",
-            "111": "Livros",
-            "333": "Eletrônicos",
-            "555": "Bebidas",
-            "888": "Brinquedos",
-            "ERR": "Not Registered",
-        }
+        products_store = Controler.get_data("Products")
         checked_product = {}
         try:
             checked_product["code"] = product_code
-            checked_product["key"] = product_store[product_code]
+            checked_product["key"] = products_store[product_code]
             return checked_product
 
         except KeyError:
             checked_product["code"] = product_code
-            checked_product["key"] = product_store["ERR"]
+            checked_product["key"] = products_store["ERR"]
             return checked_product
     # -------------------------------------------#
     # Company Code Setter
