@@ -15,8 +15,11 @@ class ServerInstance(BaseHTTPRequestHandler):
     self.handler_Request('get')
     
   def do_POST(self):
-    self.handler_Request('post')
-    
+    content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
+    post_data = self.rfile.read(content_length)
+
+    print('Request from post',post_data.data)  
+
   def handler_Request(self, method):
     path_request = self.path
     method_controller = router[method]
