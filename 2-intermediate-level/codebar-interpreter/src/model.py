@@ -35,29 +35,19 @@ class Package:
     def set_vendor(self, vendor_code):
         vendors_store = Controler.get_data("Vendors")
         checked_vendor = {}
-        try:
-            checked_vendor["code"] = vendor_code
-            checked_vendor["key"] = vendors_store[vendor_code]
-            return checked_vendor
 
-        except KeyError:
-            checked_vendor["code"] = vendor_code
-            checked_vendor["key"] = vendors_store["ERR"]
-            return checked_vendor
+        checked_vendor["code"] = vendor_code
+        checked_vendor["key"] = vendors_store.get(vendor_code, "ERR")
+        return checked_vendor
     # -------------------------------------------#
     # Product Setter
     def set_product(self, product_code):
         products_store = Controler.get_data("Products")
         checked_product = {}
-        try:
-            checked_product["code"] = product_code
-            checked_product["key"] = products_store[product_code]
-            return checked_product
 
-        except KeyError:
-            checked_product["code"] = product_code
-            checked_product["key"] = products_store["ERR"]
-            return checked_product
+        checked_product["code"] = product_code
+        checked_product["key"] = products_store.get(product_code, "ERR")
+        return checked_product
     # -------------------------------------------#
     # Company Code Setter
     def set_company(self, company_code):
