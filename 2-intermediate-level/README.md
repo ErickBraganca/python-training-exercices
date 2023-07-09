@@ -5,4 +5,5 @@
 <ol>
     <li>CODEBAR Interpreter</li>
     <li>HTTP Server NoFramework</li>
+    <li>Basic 3D File Converter</li>
 </ol>
